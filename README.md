@@ -33,7 +33,7 @@ To adress this problem, the world model was made with a certain combination of v
 ## Installing PG
 This package has only been tested on [Ubuntu 16.04](http://releases.ubuntu.com/16.04/) with [ROS Kinetic](http://wiki.ros.org/kinetic).
 
-###### ROS Kinetic
+#### ROS Kinetic
 This steps come from this 2 tutorials: [1](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 [2](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment).
 ```
@@ -53,6 +53,56 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 ```
+#### RatSLAMROS
+This steps follows the tutorial given by the creators: [3](https://github.com/davidmball/ratslam/blob/wiki/RatSLAMROS.md
+)
+```
+sudo apt-get install libirrlicht-dev
+sudo apt-get install libopencv-dev
+cd ~/catkin_ws/src
+git clone https://github.com/davidmball/ratslam.git ratslam_ros
+                                                                            cd ratslam_ros
+                                                                            git checkout ratslam_ros
+cd ~/catkin_ws
+catkin_make
+```
+You can also download a dataset and try it following the steps given at their tutorial.
+We wll later copy a configuration file to this package.
 
+#### OpenBase
+Once again this steps were made taking into consideration the creator's tutorial:  [4](https://github.com/GuiRitter/OpenBase
+)
+```
+cd ~
+git clone https://github.com/GuiRitter/OpenBase.git OpenBase
+cp -r ~/OpenBase/ROS/open_base ~/catkin_ws/src/open_base
+sudo apt-get install ros-kinetic-effort-controllers
+sudo apt-get install ros-kinetic-joint-state-controller
+sudo apt-get install ros-kinetic-position-controllers
+sudo apt install ros-kinetic-controller-manager
+```
+We will later need to add some sensors to the robot.
+
+#### PG
+```
+cd ~/catkin_ws/src
+git clone https://github.com/GonzaloCrovetto/pg.git pg
+                                                                            cd pg
+                                                                            git checkout pg
+cp -r ~/catkin_ws/src/pg/config/for_ratslam_ros/config_openBase.txt.in ~/catkin_ws/src/ratslam_ros/config/config_openBase.txt.in
+cd ~/catkin_ws
+catkin_make
+```
+Following this steps you have downloaded the PG package, and copied the config file to the ratslam_ros package
+We now need to add sensors to the open_base proyect robot, to do this, you need to copy the full content of this file:
+```
+ ~/catkin_ws/src/pg/config/for_open_base/sensors.txt
+```
+Inside this other file (without overwriting anything):
+```
+ ~/catkin_ws/src/open_base/xacro/main.urdf.xacro
+```
+Copy it (for example) between the last </joint> tag and the first <xacro:rim_macro tag (between line 61 and 62, but this might change).
 
 ## Running PG
+
