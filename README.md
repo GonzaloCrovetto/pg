@@ -4,6 +4,8 @@ A [ROS](https://www.ros.org/) package that provides the enviroment needed to tes
 
 The main reason for this package was to try and use RatSLAMROS in a consistent enviroment. For this, the package relies on the use of the ROS version the OpenBase robot; therefore in order to use this package there are a series of steps that need to be followed wich are addressed later on in the Install section. 
 
+## Adressed problems
+
 The package provides a [Gazebo](http://gazebosim.org/) world  model, and couple of simple programs in order for the robot to move by itself or by following commands from the keyboard. All of this has been made taking into consideration what appears to be the two main complications regarding the use of RatSLAM:
 1. Being able to recognize the same location again.
 2. Avoid to mistakenly recognize two different places, with similar visual inputs, as the same.
@@ -28,4 +30,29 @@ When one of this mistakes is done, the system will then believe that 2 diferent 
 To adress this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visualy unique.
 ![visual cues from the map](images/VisualCues.png)
 
+## Installing PG
+This package has only been tested on [Ubuntu 16.04](http://releases.ubuntu.com/16.04/) with [ROS Kinetic](http://wiki.ros.org/kinetic).
 
+###### ROS Kinetic
+This steps come from this 2 tutorials: [1](http://wiki.ros.org/kinetic/Installation/Ubuntu)
+[2](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment).
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install ros-kinetic-desktop-full
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
+```
+
+
+## Running PG
