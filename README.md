@@ -17,16 +17,31 @@ We then have position (X,Y), and pose (X,Y,θ).
 
 The first complication comes from the fact that RatSLAM makes a 2D sketch of the map seen, by drawing lines to represent the path taken by the robot, with each point of that line representing a place in the map. The problem is that in a 2D map each point can only represent a position, but in this case is trying to represent a pose (due to the way that the system works, which depends on the orientation of the robot's camera); and because of this there can (and will) be two or more points, distant from each other, that are representing the same position (X,Y). And this leads an an innacurate (or easily misinterpreted) representation of a 2D map.
 One way to adress part of this problem (with the purpose of adquiring results that are easier to analize) is to limit the way the robot moves on the map. In this case it was decided to follow the example of the datasets provided by the autors, limiting the robot's movement  along specific paths or "roads". This limits the amount of diferent positions and poses for the robot; but even by traveling in a straight line,  the robot could be traveling in one direction or the other.
-![two ways on the same road](images/oppositeDirection.png)
+
+<p align="center">
+  <img src="images/oppositeDirection.png">
+  <b>With the same colours are represented the same locations or positions:</b><br>
+  <br><br>
+</p>
 
 This problem is addressed by the program responsable of the movement of the robot, by making turns from one direction to the opposite one, trying to set a relationship between the same position with the two opposite directions in differet points on the map.
 
 The second complication comes from the fact that two diferent places can look alike, and since the robot position estimation relies heavily (or completely) on the visual input, the robot can mistake one place for another.
 When one of these mistakes are done, the system will then believe that two diferent places are the same, and this single error can "destroy" a map.
-![examples of map destroyed by one error](images/MapDestruction.png)
+
+
+<p align="center">
+  <img src="images/MapDestruction.png">
+  <b>The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</b><br>
+</p>
 
 To address this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visually unique.
-![visual cues from the map](images/VisualCues.png)
+
+<p align="center">
+  <img src="images/VisualCues.png">
+  <b>Part of the design of the map</b><br>
+</p>
+
 
 ## Installing PG
 This package has only been tested on [Ubuntu 16.04](http://releases.ubuntu.com/16.04/) with [ROS Kinetic](http://wiki.ros.org/kinetic).
@@ -113,7 +128,10 @@ One can also run the pg_LEKeyboard.exe file in another terminal in order to comm
 rosrun pg pg_LEKeyboard
 ```
 A: Goes left, D: Right, W: Fordward, S: Backwards, Q: Stops the robot, Z: Ends the program, and every other key makes the robot to go back to autonomous movement.
-![keys](images/keys.png)
+
+<p align="center">
+  <img src="images/keys.png">
+</p>
 
 It is also an option to run each diferent part one by one. In order to do that it is recommended to check the contents of the /launch and /src folders inside the pg proyect.
 To change the map settings, the contents of the /worlds and /models folders (inside the pg proyect) can be modified.
