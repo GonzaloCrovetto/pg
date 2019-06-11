@@ -95,6 +95,10 @@ cd ~/catkin_ws
 catkin_make
 ```
 After installing PG, the xacros main file must be changed in order to add the sensors needed to run the proyect.
+In order to move the robot, it's needed to comment the 518,19, and 520 lines (the ones where values get published for the robot to move, or not) of the main file of this proyect, that can be found here:
+```
+ ~/catkin_ws/src/open_base/src/main.cpp
+```
 
 #### PG
 ```
