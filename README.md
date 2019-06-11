@@ -19,9 +19,8 @@ The first complication comes from the fact that RatSLAM makes a 2D sketch of the
 One way to adress part of this problem (with the purpose of adquiring results that are easier to analize) is to limit the way the robot moves on the map. In this case it was decided to follow the example of the datasets provided by the autors, limiting the robot's movement  along specific paths or "roads". This limits the amount of diferent positions and poses for the robot; but even by traveling in a straight line,  the robot could be traveling in one direction or the other.
 
 <p align="center">
-  <img src="images/oppositeDirection.png">
-  <b>With the same colours are represented the same locations or positions:</b><br>
-  <br><br>
+  <img src="images/oppositeDirection.png"><br>
+  <p>With the same colours are represented the same locations or positions:</p>
 </p>
 
 This problem is addressed by the program responsable of the movement of the robot, by making turns from one direction to the opposite one, trying to set a relationship between the same position with the two opposite directions in differet points on the map.
@@ -31,15 +30,15 @@ When one of these mistakes are done, the system will then believe that two difer
 
 
 <p align="center">
-  <img src="images/MapDestruction.png">
-  <b>The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</b><br>
+  <img src="images/MapDestruction.png"><br>
+  <p>The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</p>
 </p>
 
 To address this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visually unique.
 
 <p align="center">
-  <b>Part of the design of the map</b><br>
-  <img src="images/VisualCues.png">
+  <img src="images/VisualCues.png"><br>
+  <p>Part of the design of the map</p>
 </p>
 
 
