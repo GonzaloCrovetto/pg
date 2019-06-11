@@ -1,5 +1,6 @@
 # PG: RatSLAMROS and OpenBase integration
 ![running ratslam and openbase with ros](images/Running1.png)
+
 A [ROS](https://www.ros.org/) package that provides the enviroment needed to test the ROS version of [RatSLAM](https://github.com/davidmball/ratslam/blob/wiki/RatSLAMROS.md) using the robot provided by the ROS version of [OpenBase](https://github.com/GuiRitter/OpenBase).
 
 The main reason for this package was to try and use RatSLAMROS in a consistent environment. For this, the package relies on the use of the ROS version of the OpenBase robot; therefore in order to use this package there are a series of steps that need to be followed which are provided later on in the Install section. 
@@ -19,9 +20,9 @@ The first complication comes from the fact that RatSLAM makes a 2D sketch of the
 One way to adress part of this problem (with the purpose of adquiring results that are easier to analize) is to limit the way the robot moves on the map. In this case it was decided to follow the example of the datasets provided by the autors, limiting the robot's movement  along specific paths or "roads". This limits the amount of diferent positions and poses for the robot; but even by traveling in a straight line,  the robot could be traveling in one direction or the other.
 
 <p align="center">
-  <img src="images/oppositeDirection.png"><br>
-  <p align="center" >With the same colours are represented the same locations or positions:</p>
+  <img src="images/oppositeDirection.png">
 </p>
+<p align="center" >With the same colours are represented the same locations or positions:</p>
 
 This problem is addressed by the program responsable of the movement of the robot, by making turns from one direction to the opposite one, trying to set a relationship between the same position with the two opposite directions in differet points on the map.
 
@@ -30,17 +31,17 @@ When one of these mistakes are done, the system will then believe that two difer
 
 
 <p align="center">
-  <img src="images/MapDestruction.png"><br>
-  <p align="center">The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</p>
+  <img src="images/MapDestruction.png">
 </p>
+<p align="center">The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</p>
+
 
 To address this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visually unique.
 
 <p align="center">
-  <img src="images/VisualCues.png"><br>
-  <p align="center">Part of the design of the map</p>
+  <img src="images/VisualCues.png">
 </p>
-
+<p align="center">Part of the design of the map</p>
 
 ## Installing PG
 This package has only been tested on [Ubuntu 16.04](http://releases.ubuntu.com/16.04/) with [ROS Kinetic](http://wiki.ros.org/kinetic).
@@ -129,7 +130,7 @@ rosrun pg pg_LEKeyboard
 A: Goes left, D: Right, W: Fordward, S: Backwards, Q: Stops the robot, Z: Ends the program, and every other key makes the robot to go back to autonomous movement.
 
 <p align="center">
-  <img src="images/keys.png">
+  <img src="images/keyMap.png">
 </p>
 
 It is also an option to run each diferent part one by one. In order to do that it is recommended to check the contents of the /launch and /src folders inside the pg proyect.
