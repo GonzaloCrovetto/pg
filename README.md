@@ -38,8 +38,8 @@ When one of these mistakes are done, the system will then believe that two difer
 To address this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visually unique.
 
 <p align="center">
-  <img src="images/VisualCues.png">
   <b>Part of the design of the map</b><br>
+  <img src="images/VisualCues.png">
 </p>
 
 
