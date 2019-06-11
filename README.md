@@ -74,8 +74,6 @@ sudo apt-get install libirrlicht-dev
 sudo apt-get install libopencv-dev
 cd ~/catkin_ws/src
 git clone https://github.com/davidmball/ratslam.git ratslam_ros
-                                                                            cd ratslam_ros
-                                                                            git checkout ratslam_ros
 cd ~/catkin_ws
 catkin_make
 ```
@@ -93,6 +91,8 @@ sudo apt-get install ros-kinetic-effort-controllers
 sudo apt-get install ros-kinetic-joint-state-controller
 sudo apt-get install ros-kinetic-position-controllers
 sudo apt install ros-kinetic-controller-manager
+cd ~/catkin_ws
+catkin_make
 ```
 After installing PG, the xacros main file must be changed in order to add the sensors needed to run the proyect.
 
@@ -100,8 +100,6 @@ After installing PG, the xacros main file must be changed in order to add the se
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/GonzaloCrovetto/pg.git pg
-                                                                            cd pg
-                                                                            git checkout pg
 cp -r ~/catkin_ws/src/pg/config/for_ratslam_ros/config_openBase.txt.in ~/catkin_ws/src/ratslam_ros/config/config_openBase.txt.in
 cd ~/catkin_ws
 catkin_make
