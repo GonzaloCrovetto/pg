@@ -16,7 +16,7 @@ To explain this two problems let's first introduce the idea of position and pose
 We then have position (X,Y), and pose (X,Y,θ).
 ![examples of position and pose](images/PositionAndPose.png)
 
-The first complication comes from the fact that RatSLAM makes a 2D sketch of the map seen, by drawing lines to represent the path taken by the robot, with each point of that line representing a place in the map. The problem is that in a 2D map each point can only represent a position, but in this case is trying to represent a pose (due to the way that the system works, wich depends on the orientation of the robot's camera); and because of this there can, and will, be two or more points distant from each other that are representing the same position (X,Y). And this leads to really bad representation of the map.
+The first complication comes from the fact that RatSLAM makes a 2D sketch of the map seen, by drawing lines to represent the path taken by the robot, with each point of that line representing a place in the map. The problem is that in a 2D map each point can only represent a position, but in this case is trying to represent a pose (due to the way that the system works, wich depends on the orientation of the robot's camera); and because of this there can (and will) be two or more points, distant from each other, that are representing the same position (X,Y). And this leads to really bad representation of the map.
 One way to adress part of this problem (with the purpose of adquiring results that are easier to analize) is to limit the way the robot moves on the map. In this case it was decided to follow the example of the datasets provided by the autors, and limit the robot movement along specific paths or "roads". This limits the amount of diferent positions and poses for the robot, but even by traveling in a straight line, we still need to know if we are going one direction or the other.
 ![two ways on the same road](images/oppositeDirection.png)
 
@@ -93,7 +93,7 @@ cp -r ~/catkin_ws/src/pg/config/for_ratslam_ros/config_openBase.txt.in ~/catkin_
 cd ~/catkin_ws
 catkin_make
 ```
-Following this steps you have downloaded the PG package, and copied the config file to the ratslam_ros package
+Following this steps you have downloaded the PG package, and copied the config file to the ratslam_ros package.
 We now need to add sensors to the open_base proyect robot, to do this, you need to copy the full content of this file:
 ```
  ~/catkin_ws/src/pg/config/for_open_base/sensors.txt
@@ -106,3 +106,26 @@ Copy it (for example) between the last </joint> tag and the first <xacro:rim_mac
 
 ## Running PG
 
+The easiest way to try it, is to launch the pg_runAll.launch launch file:
+```
+ roslaunch pg pg_runAll.launch
+```
+You can also run the pg_LEKeyboard.exe file in another terminal in order to command the robot with the keyboard:
+```
+rosrun pg pg_LEKeyboard
+```
+A: Goes left, D: Right, W: Fordward, S: Backwards, Q: Stops the robot, Z:ends the program, and every other key makes the robot to go back to autonomous movement.
+![keys](images/keys.png)
+
+You can also chose to run the diferent parts, in order to do that check the contents of the /launch and /src folders inside the pg proyect.
+If you want to change the map settings, go to the /worlds and /models folders inside the pg proyect.
+
+## Issues and future work
+
+There is still plenty of work to be done in order to achieve better results from this work. 
+
+For example, there is a current problem that makes the robot draw a big straight line at the begining of the program, wich does not correlate with the actual movement.
+
+More work can be to be done regarding the tweaking of the different variables found at the config file for ratslam, the simulation variables set at the .world file, and the speeds that the pg_openBase_linealExplorer.cpp file sets for the robot.
+The current numbers were set based on the default variables for the .world file, and from there, and following the restrictions placed by the simulation (like for example it's simulation speed), many tests were made in order to try and find a good combination of initial variable numbers. 
+It is highly recommended to adress this, and try different combinations that might work better for you.
