@@ -1,0 +1,134 @@
+	<joint	name="holder_joint"	type="fixed">
+		<parent link="base_link" />
+		<child link="holder_link" />
+		<origin	xyz="0 0 0.0442"/><!--0.0442-->
+	</joint>
+	<link name="holder_link">
+		<collision>
+			<geometry>
+				<box size="0.005 0.005 0.08"/>
+			</geometry>
+		</collision>
+		<visual>
+			<geometry>
+				<box size="0.005 0.005 0.08"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<joint	name="camera_joint"	type="fixed">
+		<parent link="holder_link" />
+		<child link="camera_link" />
+		<origin	xyz="0 0.005 0" rpy="0 0 1.5708"/>
+	</joint>
+
+  <link name="camera_link">
+		<collision>
+			<geometry>
+				<box size="0.005 0.01 0.005"/>
+			</geometry>
+		</collision>
+		<visual>
+			<geometry>
+				<box size="0.005 0.01 0.005"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+		<inertial>
+		  <mass value="1e-5" />
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+  </link>
+
+	<gazebo reference="camera_link">
+		<sensor type="camera" name="camera1">
+      	<update_rate>20.0</update_rate>
+      	<camera name="head">
+					<horizontal_fov>1.3962634</horizontal_fov>
+					<image>
+						<width>600</width>
+						<height>400</height>
+						<format>B8G8R8</format><!-- (L8|R8G8B8|B8G8R8|BAYER_RGGB8|BAYER_BGGR8|BAYER_GBRG8|BAYER_GRBG8)-->
+					</image>
+					<clip>
+						<near>0.01</near>
+						<far>300</far>
+					</clip>
+      	</camera>
+      	<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>20.0</updateRate>
+					<cameraName>camera</cameraName>
+					<imageTopicName>image</imageTopicName>
+					<cameraInfoTopicName>camera_link</cameraInfoTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+      	</plugin>
+    	</sensor>
+	</gazebo>
+
+	<joint	name="distance_joint"	type="fixed">
+		<parent link="holder_link" />
+		<child link="laser_link" />
+		<origin	xyz="0 0.005 0.03" rpy="0 0 1.5708"/>
+	</joint>
+
+	<link name="laser_link">
+		<collision>
+			<geometry>
+				<box size="0.005 0.012 0.005"/>
+			</geometry>
+		</collision>
+		<visual>
+			<geometry>
+				<box size="0.005 0.012 0.005"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+		<inertial>
+		  <mass value="1e-5" />
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+  </link>
+
+	<!-- hokuyo -->
+	<gazebo reference="laser_link">
+		<sensor type="ray" name="head_hokuyo_sensor">
+			<update_rate>20</update_rate>
+			<ray>
+				<scan>
+					<horizontal>
+						<samples>720</samples>
+						<resolution>1</resolution>
+						<min_angle>-1.570796</min_angle>
+						<max_angle>1.570796</max_angle>
+				  </horizontal>
+				</scan>
+				<range>
+			  	<min>0.01</min>
+			  	<max>30.0</max>
+			  	<resolution>0.01</resolution>
+				</range>
+				<noise>
+			  	<type>gaussian</type>
+			  <!-- Noise parameters based on published spec for Hokuyo laser
+				   achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+				   stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+				   reading. -->
+			  	<mean>0.0</mean>
+			  	<stddev>0.01</stddev>
+				</noise>
+			</ray>
+			<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+				<topicName>/open_base/laser/scan</topicName>
+				<frameName>distance_link</frameName>
+			</plugin>
+		</sensor>
+	</gazebo>

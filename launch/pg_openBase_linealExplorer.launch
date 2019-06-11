@@ -1,0 +1,5 @@
+<launch>
+
+	<node name="pg_openBase_linealExplorer" pkg="pg"  type="pg_openBase_linealExplorer"  />
+
+</launch>

@@ -1,0 +1,43 @@
+<launch>
+
+<!--Just like open_base/launch/gazebo_controller.launch but changes the world and the robot swpawning area-->
+
+	<include file="$(find open_base)/launch/parameter.launch"/>
+	<arg	name="debug" default="false"/>
+	<arg	name="gui"	default="true"/>
+	<arg	name="headless"	default="false"/>
+	<arg	name="paused"	default="true"/>
+	<arg	name="use_sim_time"	default="true"/>
+	<arg	name="height"	default="0"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find pg)/worlds/linear_test_world.world"/>
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="gui" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+
+	<node
+		name="open_base_spawner"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    ns="open_base"
+    args="-urdf -model robot -param robot_description -model open_base -x -0.125 -y 0.625 -z 0"
+    /><!--the model open_base is created when calling open_base/launch/parameter.launch-->
+
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		respawn="false"
+		output="screen"
+		ns="open_base"
+	>
+		<param	name="publish_frequency"	type="double"	value="30.0"/>
+		<remap	from="/joint_states"	to="/open_base/joint_states"/>
+
+	</node>
+
+</launch>

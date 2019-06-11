@@ -1,0 +1,12 @@
+<launch>
+
+	<include file="$(find pg)/launch/pg_openBase.launch"/>
+
+
+	<include file="$(find pg)/launch/pg_ratslam_openBase.launch"/>
+
+
+	<include file="$(find pg)/launch/pg_openBase_linealExplorer.launch"/>
+
+
+</launch>

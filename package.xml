@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pg</name>
+  <version>0.0.0</version>
+  <description>The pg package</description>
+
+
+  <maintainer email="crovetto.gonzalo@gmail.com">gonzalo</maintainer>
+
+  <license>FIXME</license>
+
+
+
+  <!--build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>gazebo</exec_depend-->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <!--depend>rospy</depend-->
+  <depend>gazebo_ros</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf</depend>
+  <depend>sensor_msgs</depend>
+
+  <exec_depend>gazebo</exec_depend>
+  <!--exec_depend>ratslam_ros</exec_depend>
+  <exec_depend>open_base</exec_depend-->
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <gazebo_ros gazebo_media_path="${prefix}" gazebo_model_path="${prefix}/models"/>
+  </export>
+</package>
