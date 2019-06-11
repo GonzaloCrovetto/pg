@@ -22,7 +22,7 @@ One way to adress part of this problem (with the purpose of adquiring results th
 <p align="center">
   <img src="images/oppositeDirection.png">
 </p>
-<p align="center" >With the same colours are represented the same locations or positions:</p>
+<p align="center" >With the same colours are represented the same locations or positions</p>
 
 This problem is addressed by the program responsable of the movement of the robot, by making turns from one direction to the opposite one, trying to set a relationship between the same position with the two opposite directions in differet points on the map.
 
