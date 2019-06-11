@@ -114,7 +114,7 @@ You can also run the pg_LEKeyboard.exe file in another terminal in order to comm
 ```
 rosrun pg pg_LEKeyboard
 ```
-A: Goes left, D: Right, W: Fordward, S: Backwards, Q: Stops the robot, Z:ends the program, and every other key makes the robot to go back to autonomous movement.
+A: Goes left, D: Right, W: Fordward, S: Backwards, Q: Stops the robot, Z: Ends the program, and every other key makes the robot to go back to autonomous movement.
 ![keys](images/keys.png)
 
 You can also chose to run the diferent parts, in order to do that check the contents of the /launch and /src folders inside the pg proyect.
