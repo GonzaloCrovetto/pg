@@ -20,7 +20,7 @@ One way to adress part of this problem (with the purpose of adquiring results th
 
 <p align="center">
   <img src="images/oppositeDirection.png"><br>
-  <p>With the same colours are represented the same locations or positions:</p>
+  <p align="center" >With the same colours are represented the same locations or positions:</p>
 </p>
 
 This problem is addressed by the program responsable of the movement of the robot, by making turns from one direction to the opposite one, trying to set a relationship between the same position with the two opposite directions in differet points on the map.
@@ -31,14 +31,14 @@ When one of these mistakes are done, the system will then believe that two difer
 
 <p align="center">
   <img src="images/MapDestruction.png"><br>
-  <p>The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</p>
+  <p align="center">The first mark shows a single error, that in the second mark appears to be correcting itself, but fails</p>
 </p>
 
 To address this problem, the world model was made with a certain combination of visual cues along the roads that attempt to make every single place visually unique.
 
 <p align="center">
   <img src="images/VisualCues.png"><br>
-  <p>Part of the design of the map</p>
+  <p align="center">Part of the design of the map</p>
 </p>
 
 
