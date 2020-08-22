@@ -145,6 +145,6 @@ There is still plenty of work to be done in order to achieve better results from
 
 For example, there is a current problem that makes the robot draw a big straight line at the beginning of the program, which does not correlate with the actual movement.
 
-More work can be to be done regarding the tweaking of the different variables found at the config file for ratslam_ros, the simulation variables set at the .world file, and the speeds that the pg_openBase_linealExplorer.cpp file sets for the robot.
+More work can be done regarding the tweaking of the different variables found at the config file for ratslam_ros, the simulation variables set at the .world file, and the speeds that the pg_openBase_linealExplorer.cpp file sets for the robot.
 The current numbers were set based on the default variables for the .world file; and from there, and following the restrictions placed by the simulation (like for example it's simulation's speed), many tests were made in order to try and find a good combination of initial variable numbers. 
 It is highly recommended to address this, and try different combinations that might work better for each case.
